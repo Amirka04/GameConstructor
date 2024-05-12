@@ -1,12 +1,13 @@
 #pragma once
 
-#include "../glad/include/glad/glad.h"
-
-#include <iostream>
-#include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
 #include <bits/stdc++.h>
+#include <iostream>
 #include <memory.h>
+
+#include "../glad/include/glad/glad.h"
+#include "GLFW/glfw3.h"
+#include "glm.hpp"
+
 
 
 class window{

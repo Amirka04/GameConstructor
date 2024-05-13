@@ -2,7 +2,7 @@
 #define EVENT_H
 
 
-#include "../Window/window.h"
+#include "window.h"
 
 
 const uint64_t MOUSE_BUTTON = 1024;

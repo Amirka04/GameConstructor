@@ -1,0 +1,3 @@
+[submodule "ConstructorEngine/lib/glfw"]
+	path = ConstructorEngine/lib/glfw
+	url = https://github.com/glfw/glfw.git

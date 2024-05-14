@@ -41,7 +41,7 @@ class window{
 
         // установка иконки
         static void setIcon(const std::string &iconSource);
-
+        
         // получение смещение масштаба окна
         static glm::vec2 getOffsideScale();
 

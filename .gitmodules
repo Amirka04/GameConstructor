@@ -4,6 +4,3 @@
 [submodule "ConstructorEngine/lib/glm"]
 	path = ConstructorEngine/lib/glm
 	url = https://github.com/g-truc/glm.git
-[submodule "ConstructorEngine/lib/ConstructorEngine/lib/glm"]
-	path = ConstructorEngine/lib/ConstructorEngine/lib/glm
-	url = https://github.com/g-truc/glm.git

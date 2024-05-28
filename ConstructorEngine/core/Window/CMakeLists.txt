@@ -6,7 +6,7 @@ add_library(EngineWindow STATIC window.cpp window.h)
 
 target_include_directories(EngineWindow PUBLIC glad/include/glad)
 target_include_directories(EngineWindow PUBLIC ${CMAKE_SOURCE_DIR}/ConstructorEngine/lib/glm/glm)
-target_include_directories(EngineWindow PUBLIC ${CMAKE_SOURCE_DIR}/ConstructorEngine/lib/glfw3/include)
+target_include_directories(EngineWindow PUBLIC ${CMAKE_SOURCE_DIR}/ConstructorEngine/lib/glfw/include)
 
 
 target_link_libraries(EngineWindow PUBLIC glad)

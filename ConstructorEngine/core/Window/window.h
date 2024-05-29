@@ -3,8 +3,10 @@
 #include <bits/stdc++.h>
 #include <iostream>
 #include <memory.h>
+#include <32/bits/stdc++.h>
 
-#include "../glad/include/glad/glad.h"
+
+#include "glad.h"
 #include "GLFW/glfw3.h"
 #include "glm.hpp"
 

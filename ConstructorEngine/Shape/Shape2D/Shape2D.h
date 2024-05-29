@@ -3,16 +3,17 @@
 
 
 #include "window.h"
+#include "BufferManager.h"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
 
 // базовые цвета для удобной передачи их в функцию
-constexpr glm::fvec3 BLACK = glm::fvec3(0, 0, 0) / 255.0f;
-constexpr glm::fvec3 WHITE = glm::fvec3(255.0f, 255.0f, 255.0f) / 255.0f;
-constexpr glm::fvec3 RED = glm::fvec3(255.0f, 0, 0) / 255.0f;
-constexpr glm::fvec3 GREEN = glm::fvec3(0, 255.0f, 0) / 255.0f;
-constexpr glm::fvec3 BLUE = glm::fvec3(0, 0, 255.0f) / 255.0f;
+const glm::fvec3 BLACK = glm::fvec3(0, 0, 0) / 255.0f;
+const glm::fvec3 WHITE = glm::fvec3(255.0f, 255.0f, 255.0f) / 255.0f;
+const glm::fvec3 RED = glm::fvec3(255.0f, 0, 0) / 255.0f;
+const glm::fvec3 GREEN = glm::fvec3(0, 255.0f, 0) / 255.0f;
+const glm::fvec3 BLUE = glm::fvec3(0, 0, 255.0f) / 255.0f;
 
 
 const glm::vec2 CenterViewport{0.0f};
@@ -76,18 +77,15 @@ public:
 	// деструктор, в дальнейшем будет удалять VBO и EBO по индексу
 	virtual ~Shape2D();
 
+
 private:
-  // обновление данных в видеокарте
-	void UpdateDataInRender();
-
-protected:
-
-protected:
-	GLuint VBO;				                    // VBO (Vertex Buffer Object)
-	Transform transform;                  		// общая информация о фигуре
-  	glm::vec3 color;                      		// цвет
+	GLuint *VBO;								// VBO (Vertex Buffer Object)
 	std::vector<glm::vec2> original;      		// начальные координаты фигуры без трансформации 
 	std::vector<glm::vec2> data;		// массив вершин
+
+protected:
+	Transform transform;                  		// общая информация о фигуре
+  	glm::vec3 color;                      		// цвет
 };
 
 

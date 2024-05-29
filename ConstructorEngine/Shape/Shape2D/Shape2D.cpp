@@ -1,16 +1,13 @@
 #include "Shape2D.h"
 
 
+
 Shape2D::Shape2D(){
     transform.pos = glm::vec2(0.0f);
     transform.size = glm::vec2(1.0f);
     transform.scale = glm::vec2(1.0f);
     transform.angle = 0.0f;
     color = glm::vec3(1.0f);
-
-    glGenBuffers(1, &VBO);
-
-    // std::cout << "Create VBO id -> " << VBO << std::endl;
 }
 
 
@@ -20,11 +17,7 @@ void Shape2D::init(const std::vector<glm::fvec2>& nPtr){
     // т.к. мы не знаем что за фигура будет рисоваться, то будем просто принимать массив вершин для гибкости
     // а если присмотреться к рендеру, то обычно мы присуем полигон что позволяет нам рисовать любой примитив
     original = data = nPtr;
-    
-    // создание вертекста буффера вершин
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(glm::vec2) * data.size(), &data.front(), GL_DYNAMIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    VBO = BufferManager::create(&data.front(), sizeof(glm::vec2) * data.size());
 }
 
 
@@ -36,8 +29,7 @@ void Shape2D::setPosition(const glm::vec2& newPos){
     for(glm::vec2& vertex : data)
         vertex = glm::vec2(translateMatrix * glm::vec4(vertex, 1.0f, 1.0f));
     transform.pos = newPos;
-
-    UpdateDataInRender();
+    BufferManager::updateData(VBO, sizeof(glm::vec2) * data.size(), &data.front());
 }
 
 
@@ -61,7 +53,8 @@ void Shape2D::setScale(const glm::fvec2& newScale){
     setPosition(startPosition);
     transform.scale = newScale;
 
-    UpdateDataInRender();
+    BufferManager::updateData(VBO, sizeof(glm::vec2) * data.size(), &data.front());
+
 }
 
 
@@ -114,7 +107,7 @@ void Shape2D::setRotate(float angle){
     setPosition(startPosition);
     transform.angle = angle;
 
-    UpdateDataInRender();
+    BufferManager::updateData(VBO, sizeof(glm::vec2) * data.size(), &data.front());
 }
 
 
@@ -138,10 +131,9 @@ std::vector<glm::vec2> Shape2D::getOriginalPointer(){ return original; }
 
 // рендер
 void Shape2D::render(){
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, *VBO);
         glVertexPointer(2, GL_FLOAT, 0, nullptr);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
-
 
     glEnableClientState(GL_VERTEX_ARRAY);
         glColor3f(color.r, color.g, color.b);
@@ -151,16 +143,10 @@ void Shape2D::render(){
 
 
 Shape2D::~Shape2D(){
-    // glDeleteBuffers(1, &VBO);
-    glDeleteBuffers(1, &VBO);
+    // удаление из буффера
+    BufferManager::del(VBO);
 }
 
-
-void Shape2D::UpdateDataInRender(){
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(glm::vec2) * data.size(), &data.front());
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-}
 
 
 

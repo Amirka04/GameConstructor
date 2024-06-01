@@ -149,7 +149,6 @@ Shape2D::~Shape2D(){
 
 
 
-
 Shape2D* create_clone(Shape2D* original){
     Shape2D* clone = new Shape2D;
     clone->init(original->getOriginalPointer());

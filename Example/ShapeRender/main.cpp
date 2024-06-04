@@ -20,7 +20,7 @@ int main(int args, char** argv){
 
     while(!window::isShouldCloseWindow()){
         window::clear(glm::vec4(0.5f));
-        i += 0.05f;
+        i += 0.5f;
         shape->setRotate( i );
         shape->render();
                 

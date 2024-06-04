@@ -15,13 +15,13 @@ int main(int args, char** argv){
 
     Rectangle *shape = new Rectangle(glm::vec2(0.0f, 0.0f), glm::vec2(0.5f));
     shape->setColor(glm::vec3(GREEN));
-
-    int i = 0;
+    
+    float i = 0.0f;
 
     while(!window::isShouldCloseWindow()){
         window::clear(glm::vec4(0.5f));
-        
-        shape->setRotate( ++i % 360 );
+        i += 0.05f;
+        shape->setRotate( i );
         shape->render();
                 
 

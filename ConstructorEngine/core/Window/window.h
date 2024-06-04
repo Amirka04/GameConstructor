@@ -1,15 +1,13 @@
 #pragma once
 
-#include <bits/stdc++.h>
 #include <iostream>
 #include <memory.h>
-#include <32/bits/stdc++.h>
+#include <bits/stdc++.h>
 
 
 #include "glad.h"
 #include "GLFW/glfw3.h"
 #include "glm.hpp"
-
 
 
 class window{

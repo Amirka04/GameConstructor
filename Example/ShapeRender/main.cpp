@@ -31,8 +31,8 @@ int main(int args, char** argv){
         window::swapBuffers();
         event::update();
     }
-
-    // очистка всех ресурсов
+    
+    // очистка всех ресурсов движка
     BufferManager::finallization();
     event::free();
     window::finallyzation();

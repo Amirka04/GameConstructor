@@ -4,6 +4,8 @@
 
 #include "window.h"
 #include "BufferManager.h"
+#include "Renderer.h"
+
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
@@ -14,7 +16,6 @@ const glm::fvec3 WHITE = glm::fvec3(255.0f, 255.0f, 255.0f) / 255.0f;
 const glm::fvec3 RED = glm::fvec3(255.0f, 0, 0) / 255.0f;
 const glm::fvec3 GREEN = glm::fvec3(0, 255.0f, 0) / 255.0f;
 const glm::fvec3 BLUE = glm::fvec3(0, 0, 255.0f) / 255.0f;
-
 
 const glm::vec2 CenterViewport{0.0f};
 
@@ -33,7 +34,7 @@ struct Transform{
 	Рисование осуществляется с помощью ключа opengl, GL_POLYGON, по этому, можно передать неограниченное ( для вашей оперативной памяти ) данные
 */
 
-class Shape2D
+class Shape2D : public RenderItem
 {
 public:
 	Shape2D();
@@ -72,7 +73,7 @@ public:
 
 	// рендер, по сути рендеру всё равно что рисовать, т.к. мы рисуем с помощью ключевого слова GL_POLYGON, которая отображает фигуру с не ограниченным
 	// кол-вом точек
-	virtual void render();
+	virtual void render() override;
 
 	// деструктор, в дальнейшем будет удалять VBO и EBO по индексу
 	virtual ~Shape2D();

@@ -10,3 +10,6 @@ target_link_libraries(Shape2D PUBLIC EngineWindow)
 
 target_include_directories(Shape2D PUBLIC ${CMAKE_SOURCE_DIR}/ConstructorEngine/core/BufferManager)
 target_link_libraries(Shape2D PUBLIC BufferManager)
+
+target_include_directories(Shape2D PUBLIC ${CMAKE_SOURCE_DIR}/ConstructorEngine/core/Render)
+target_link_libraries(Shape2D PUBLIC RenderItem)

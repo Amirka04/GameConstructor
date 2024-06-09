@@ -11,11 +11,11 @@
 
 
 // базовые цвета для удобной передачи их в функцию
-const glm::fvec3 BLACK = glm::fvec3(0, 0, 0) / 255.0f;
-const glm::fvec3 WHITE = glm::fvec3(255.0f, 255.0f, 255.0f) / 255.0f;
-const glm::fvec3 RED = glm::fvec3(255.0f, 0, 0) / 255.0f;
-const glm::fvec3 GREEN = glm::fvec3(0, 255.0f, 0) / 255.0f;
-const glm::fvec3 BLUE = glm::fvec3(0, 0, 255.0f) / 255.0f;
+constexpr glm::fvec3 BLACK = glm::fvec3(0, 0, 0) / 255.0f;
+constexpr glm::fvec3 WHITE = glm::fvec3(255.0f, 255.0f, 255.0f) / 255.0f;
+constexpr glm::fvec3 RED = glm::fvec3(255.0f, 0, 0) / 255.0f;
+constexpr glm::fvec3 GREEN = glm::fvec3(0, 255.0f, 0) / 255.0f;
+constexpr glm::fvec3 BLUE = glm::fvec3(0, 0, 255.0f) / 255.0f;
 
 const glm::vec2 CenterViewport{0.0f};
 

@@ -2,12 +2,10 @@
 
 
 std::vector<GLuint*> BufferManager::buffer;
-// std::vector<const void*> BufferManager::array;
 
 
 
-GLuint* BufferManager::create(const void* data, std::size_t size)
-{
+GLuint* BufferManager::create(const void* data, std::size_t size) {
 	GLuint* VBO = new GLuint{0};
 	glGenBuffers(1, VBO);
 
@@ -21,6 +19,7 @@ GLuint* BufferManager::create(const void* data, std::size_t size)
 }
 
 
+
 void BufferManager::updateData(GLuint* VBO, std::size_t size, const void* data){
 	glBindBuffer(GL_ARRAY_BUFFER, *VBO);
         glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
@@ -28,17 +27,18 @@ void BufferManager::updateData(GLuint* VBO, std::size_t size, const void* data){
 }
 
 
+
 void BufferManager::del(GLuint* VBO){
-	if(VBO){
+	if( std::count(buffer.begin(), buffer.end(), VBO) != 0 ){
 		// сначало удалим из Буффера памяти видеокарты
 		glDeleteBuffers(1, VBO);
 		// потом удалим данных из массива
 		buffer.erase( std::remove(buffer.begin(), buffer.end(), VBO), buffer.end() );
-		// потом я установлю значение VBO на 0, но удалять не буду ( возможно )
+
 		delete VBO;
-		VBO = nullptr;
 	}
 }
+
 
 
 void BufferManager::finallization(){

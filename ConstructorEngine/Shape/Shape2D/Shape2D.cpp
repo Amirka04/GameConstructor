@@ -122,6 +122,7 @@ void Shape2D::setPosRotate(const glm::vec2& newPosRotate){
     // posRotate = glm::vec2(0.0f);
 }
 
+
 glm::vec2 Shape2D::getPosRotate(){ return glm::vec2(0.0f); }
 
 
@@ -143,7 +144,7 @@ void Shape2D::render(){
 
 
 Shape2D::~Shape2D(){
-    // удаление из буффера
+    // В деструкторе мы удаляем VBO
     BufferManager::del(VBO);
 }
 

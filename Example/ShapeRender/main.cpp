@@ -32,6 +32,8 @@ int main(int args, char** argv){
         event::update();
     }
     
+    delete shape;
+
     // очистка всех ресурсов движка
     BufferManager::finallization();
     event::free();

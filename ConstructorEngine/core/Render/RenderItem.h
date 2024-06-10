@@ -11,15 +11,14 @@ public:
     RenderItem();
     virtual ~RenderItem();
 
+
     // показать объект
     void show();
-
     // скрыть объект
     void hide();
 
-    virtual void render() = 0;
 
-    int64_t* BufferIndex;   // каждый элемент знает о своём местоположении
+    virtual void render() = 0;
 };
 
 #endif

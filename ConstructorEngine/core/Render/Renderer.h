@@ -37,8 +37,7 @@ public:
 
 private:
     static std::vector<RenderItem*> buffer;     // адреса всех объектов которые могут как либо отображаться на экране
-    static std::vector<int64_t*> AllBufferIndex;   // адреса всех индексов объектов
-    static std::vector<int64_t*> ShowedIndexBuffer; // адреса на индексы которые будут отображены на экране
+    static std::vector<RenderItem*> render_buffer; // адреса на индексы которые будут отображены на экране
 };
 
 

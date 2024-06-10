@@ -35,7 +35,9 @@ void Renderer::remove(RenderItem* rend_item){
 
 // рендер
 void Renderer::render(){
-    std::for_each( render_buffer.begin(), render_buffer.end(), [](RenderItem* rendItem){ if(rendItem != nullptr) rendItem->render(); } );
+    for(RenderItem* i : render_buffer)
+        if(i != nullptr)
+            i->render();
 }
 
 

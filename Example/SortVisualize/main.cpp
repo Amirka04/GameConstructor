@@ -5,6 +5,7 @@
 
 #include "Rectangle/Rectangle.hpp"
 
+
 // Функция будет менять их расположение и размер оставяя всё остальное прежним
 void SwapShape(Rectangle* rect, Rectangle* rect2){
     float Temp = rect->getPosition().x;

@@ -148,6 +148,9 @@ Shape2D::~Shape2D(){
     BufferManager::del(VBO);
 }
 
+GLuint Shape2D::getVBO(){ return *VBO; }
+
+std::vector<glm::vec2> Shape2D::getDrawArray(){ return data; }
 
 
 Shape2D* create_clone(Shape2D* original){

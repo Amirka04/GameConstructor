@@ -78,6 +78,9 @@ public:
 	// деструктор, в дальнейшем будет удалять VBO и EBO по индексу
 	virtual ~Shape2D();
 
+protected:
+	GLuint getVBO();
+	std::vector<glm::vec2> getDrawArray();
 
 private:
 	GLuint *VBO;								// VBO (Vertex Buffer Object)

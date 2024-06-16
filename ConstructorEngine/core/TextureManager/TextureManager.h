@@ -16,7 +16,7 @@ class TextureItem{
     public:
         std::vector<glm::vec2> uv;
         Texture2D id;
-        int wigth, height;
+        int width, height;
         std::string TextureName;
         
         TextureItem();
@@ -28,7 +28,7 @@ class TextureManager{
     public:
         static TextureItem* load(const char* path);
         static void remove(TextureItem* _texItem);
-        static void reloadTexture(TextureItem* _texItem);
+        static void reloadTexture(TextureItem* _texItem, const char* path);
         static void finalization();
     private:
         // будет хранить в себе адреса всех текстур

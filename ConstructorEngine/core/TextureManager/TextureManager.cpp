@@ -23,7 +23,7 @@ TextureItem::TextureItem(){
 TextureItem* TextureManager::load(const char* path){
     TextureItem* texItem = new TextureItem;
     int n;
-    unsigned char* data = stbi_load(path, &texItem->wigth, &texItem->height, &n, 0);
+    unsigned char* data = stbi_load(path, &texItem->width, &texItem->height, &n, 0);
     
     if(data == nullptr){
         std::cerr << "TextureManager::load() error -> " << path << " image not found" << std::endl;
@@ -39,7 +39,7 @@ TextureItem* TextureManager::load(const char* path){
         glTexParameteri(BIT_TEXTURE, GL_TEXTURE_WRAP_T, GL_REPEAT);
         glTexParameteri(BIT_TEXTURE, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(BIT_TEXTURE, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        glTexImage2D(BIT_TEXTURE, 0, GL_RGB, texItem->wigth, texItem->height, 0, (n == 4) ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, data);
+        glTexImage2D(BIT_TEXTURE, 0, GL_RGB, texItem->width, texItem->height, 0, (n == 4) ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(BIT_TEXTURE);
     glBindTexture(BIT_TEXTURE, 0);
     
@@ -51,16 +51,18 @@ TextureItem* TextureManager::load(const char* path){
 }
 
 
-void TextureManager::reloadTexture(TextureItem* texItem){
+void TextureManager::reloadTexture(TextureItem* texItem, const char* path){
     int n;
-    unsigned char* data = stbi_load(texItem->TextureName.c_str(), &texItem->wigth, &texItem->height, &n, 0);
+    unsigned char* data = stbi_load(path, &texItem->width, &texItem->height, &n, 0);
     
     if(data == nullptr){
         std::cerr << "TextureManager::load() error -> " << texItem->TextureName << " image not found" << std::endl;
     }
 
+    texItem->TextureName = path;
+
     glBindTexture(BIT_TEXTURE, texItem->id);
-        glTexSubImage2D(BIT_TEXTURE, 0, 0, texItem->wigth, texItem->height, 0, (n == 4) ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, data);
+        glTexSubImage2D(BIT_TEXTURE, 0, 0, texItem->width, texItem->height, 0, (n == 4) ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, data);
     glBindTexture(BIT_TEXTURE, 0);
     
     stbi_image_free(data);

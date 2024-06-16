@@ -17,19 +17,23 @@ Sprite2D::~Sprite2D(){
 }
 
 
-void Sprite2D::render(){    
-    glBindBuffer(GL_ARRAY_BUFFER, getVBO());
-        glVertexPointer(2, GL_FLOAT, 0, nullptr);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-
+// рендер
+void Sprite2D::render(){
     glEnable(BIT_TEXTURE);
     glBindTexture(BIT_TEXTURE, Texture->id);
 
-    glEnableClientState(GL_VERTEX_ARRAY);
+    // загрузка спрайта и координат отображения на фигуре
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-        glColor3f(color.r, color.g, color.b);
         glTexCoordPointer(2, GL_FLOAT, 0, &Texture->uv.front());
-        glDrawArrays(GL_POLYGON, 0, getDrawArray().size());
     glDisableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+    Rectangle::render();
 }
+
+
+void Sprite2D::setTexture(const char* path){
+    TextureManager::reloadTexture(Texture, path);
+}
+
+
+glm::vec2 Sprite2D::getTextureSize(){ return glm::vec2(Texture->width, Texture->height); }

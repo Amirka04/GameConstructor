@@ -19,8 +19,7 @@ class Sprite2D : public Rectangle {
         void setTexture(const char* path);
 
         // Получение высоты и ширины текстуры
-        int getTextureHeight();
-        int getTextureWidth();
+        glm::vec2 getTextureSize();
     private:
         TextureItem* Texture;
 };

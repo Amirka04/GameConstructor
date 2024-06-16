@@ -12,18 +12,27 @@ const int BIT_TEXTURE = GL_TEXTURE_2D;
 using Texture2D = GLuint;
 
 
-struct TextureCoord{
-    static std::vector<glm::vec2> coord;
+class TextureItem{
+    public:
+        std::vector<glm::vec2> uv;
+        Texture2D id;
+        int wigth, height;
+        std::string TextureName;
+        
+        TextureItem();
 };
+
+
 
 class TextureManager{
     public:
-        static Texture2D* load(const char* path);
-        static void remove(Texture2D* pTexture);
+        static TextureItem* load(const char* path);
+        static void remove(TextureItem* _texItem);
+        static void reloadTexture(TextureItem* _texItem);
         static void finalization();
     private:
         // будет хранить в себе адреса всех текстур
-        static std::vector<Texture2D*> buffer;
+        static std::vector<TextureItem*> buffer;
 };
 
 

@@ -24,7 +24,7 @@ int main(int args, char** argv){
 
 
     Rectangle shape(glm::vec2(0.0f, 0.0f), glm::vec2(0.1f));
-    shape.setColor(glm::vec3(BLUE));
+    shape.setColor(BLUE);
 
 
     while(!window::isShouldCloseWindow()){

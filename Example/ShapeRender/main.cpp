@@ -14,7 +14,7 @@ int main(int args, char** argv){
     event::init();
 
     Rectangle *shape = new Rectangle(glm::vec2(0.0f, 0.0f), glm::vec2(0.5f));
-    shape->setColor(glm::vec3(GREEN));
+    shape->setColor(glm::vec4(GREEN));
     
     float i = 0.0f;
 

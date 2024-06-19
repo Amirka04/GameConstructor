@@ -65,7 +65,7 @@ int main(int args, char** argv){
     bool isSort = false;
 
     while(!window::isShouldCloseWindow()){
-        window::clear(glm::vec4(BLACK, 1.0f));
+        window::clear(BLACK);
 
         // рендер
         Renderer::render();

@@ -9,7 +9,7 @@
 
 class Sprite2D : public Rectangle {
     public:
-        Sprite2D(const char* path = nullptr, const glm::vec2& position = {0, 0}, const glm::vec2& size = {0, 0});
+        Sprite2D(const char* path, const glm::vec2& position = {0, 0}, const glm::vec2& size = {0, 0});
         virtual ~Sprite2D();
         
         // рисование
@@ -17,11 +17,9 @@ class Sprite2D : public Rectangle {
         
         // установка текстуры
         void setTexture(const char* path);
-
-        // Получение высоты и ширины текстуры
-        glm::vec2 getTextureSize();
+        
     private:
-        TextureItem* Texture;
+        Texture texture;
 };
 
 

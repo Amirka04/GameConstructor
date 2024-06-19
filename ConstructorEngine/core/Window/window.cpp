@@ -1,8 +1,8 @@
 // header file window
 #include "window.h"
 
-
 #define STB_IMAGE_IMPLEMENTATION
+#define  STBI_ONLY_PNG
 #include "stb_image.h"
 
 
@@ -50,12 +50,13 @@ bool window::initialization(const std::string& title, int w, int h) {
 	printf ("OpenGL version: %s\n", version);
 
 	// set viewport
-	// glMatrixMode(GL_PROJECTION);
 	glViewport(0, 0, windowSize.x, windowSize.y);
-	// glMatrixMode(GL_MODELVIEW);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable( GL_BLEND );
+
 
 	std::cout << "\nCreate main window:\n";
-	std::cout << "\tWindow title:" << title << std::endl;
+	std::cout << "\tWindow title: " << title << std::endl;
 	std::cout << "\tWindow size: (" << windowSize.x << ", " << windowSize.y << ")" << std::endl;
 	std::cout << "\tWindow pos: (" << windowPos.x << ", " << windowPos.y << ")" << std::endl;
 	std::cout << "\toffset scale: (" << offsetScale.x << ", " << offsetScale.y << ")" << std::endl;

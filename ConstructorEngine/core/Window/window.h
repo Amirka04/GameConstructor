@@ -8,7 +8,7 @@
 #include "glad.h"
 #include "GLFW/glfw3.h"
 #include "glm.hpp"
-
+// #include "SOIL/SOIL.h"
 
 class window{
     public:

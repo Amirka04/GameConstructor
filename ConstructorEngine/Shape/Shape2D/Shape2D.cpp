@@ -4,10 +4,10 @@
 
 Shape2D::Shape2D(){
     transform.pos = glm::vec2(0.0f);
-    transform.size = glm::vec2(1.0f);
+    transform.size = glm::vec2(1.0f) * window::getOffsideScale();
     transform.scale = glm::vec2(1.0f);
     transform.angle = 0.0f;
-    color = glm::vec3(1.0f);
+    color = glm::vec4(1.0f);
 }
 
 
@@ -24,7 +24,7 @@ void Shape2D::init(const std::vector<glm::fvec2>& nPtr){
 
 // установка позиции ( проверено )
 void Shape2D::setPosition(const glm::vec2& newPos){
-    glm::vec2 offset = newPos - transform.pos;
+    glm::vec2 offset = (newPos - transform.pos) * window::getOffsideScale();
     glm::mat4 translateMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(offset, 1.0f));
     for(glm::vec2& vertex : data)
         vertex = glm::vec2(translateMatrix * glm::vec4(vertex, 1.0f, 1.0f));
@@ -42,7 +42,7 @@ glm::fvec2 Shape2D::getPosition(){
 
 
 // установка масштаба
-void Shape2D::setScale(const glm::fvec2& newScale){    
+void Shape2D::setScale(const glm::vec2& newScale){    
     glm::mat4 scaleModel = glm::scale(glm::mat4(1.0f), glm::vec3(newScale, 1.0f));
     glm::vec2 startPosition = transform.pos;
     setPosition(CenterViewport);
@@ -54,20 +54,19 @@ void Shape2D::setScale(const glm::fvec2& newScale){
     transform.scale = newScale;
 
     BufferManager::updateData(VBO, sizeof(glm::vec2) * data.size(), &data.front());
-
 }
 
 
 
 // установка масштаб
 glm::fvec2 Shape2D::getScale(){
-    return transform.pos;
+    return transform.scale;
 }
 
 
 
 // установка размера в пикселях
-void Shape2D::setSize(const glm::fvec2 &new_size){
+void Shape2D::setSize(const glm::vec2 &new_size){
     // установка нового масштаба
     this->setScale(new_size / transform.size);
     transform.size = new_size;
@@ -76,21 +75,21 @@ void Shape2D::setSize(const glm::fvec2 &new_size){
 
 
 // получение размера в пикселях
-glm::fvec2 Shape2D::getSize(){
+glm::vec2 Shape2D::getSize(){
     return transform.size;
 }
 
 
 
 // установка цвета
-void Shape2D::setColor(const glm::fvec3& newColor){
+void Shape2D::setColor(const glm::vec4& newColor){
     color = newColor;
 }
 
 
 
 // получение цвета
-glm::fvec3 Shape2D::getColor(){
+glm::vec4 Shape2D::getColor(){
     return color;
 }
 
@@ -137,7 +136,7 @@ void Shape2D::render(){
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     glEnableClientState(GL_VERTEX_ARRAY);
-        glColor3f(color.r, color.g, color.b);
+        glColor4f(color.r, color.g, color.b, color.a);
         glDrawArrays(GL_POLYGON, 0, data.size());
     glDisableClientState(GL_VERTEX_ARRAY);
 }

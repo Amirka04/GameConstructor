@@ -11,11 +11,11 @@
 
 
 // базовые цвета для удобной передачи их в функцию
-constexpr glm::fvec3 BLACK = glm::fvec3(0, 0, 0) / 255.0f;
-constexpr glm::fvec3 WHITE = glm::fvec3(255.0f, 255.0f, 255.0f) / 255.0f;
-constexpr glm::fvec3 RED = glm::fvec3(255.0f, 0, 0) / 255.0f;
-constexpr glm::fvec3 GREEN = glm::fvec3(0, 255.0f, 0) / 255.0f;
-constexpr glm::fvec3 BLUE = glm::fvec3(0, 0, 255.0f) / 255.0f;
+constexpr glm::vec4 BLACK = glm::vec4(0, 0, 0, 255.0f) / 255.0f;
+constexpr glm::vec4 WHITE = glm::vec4(255.0f, 255.0f, 255.0f, 255.0f) / 255.0f;
+constexpr glm::vec4 RED = glm::vec4(255.0f, 0, 0, 255.0f) / 255.0f;
+constexpr glm::vec4 GREEN = glm::vec4(0, 255.0f, 0, 255.0f) / 255.0f;
+constexpr glm::vec4 BLUE = glm::vec4(0, 0, 255.0f, 255.0f) / 255.0f;
 
 const glm::vec2 CenterViewport{0.0f};
 
@@ -41,24 +41,24 @@ public:
   	
 	// инициализация, сюда передаётся массив вершил состоящая из вещественных чисел
 	// благодаря этому нам не нужно через наследование создавать новые классы для отображения примитивов
-	void init(const std::vector<glm::fvec2>& nPtr);
+	void init(const std::vector<glm::vec2>& nPtr);
 
 	// Установка позиции на любую область экрана, УЧИТЫВАЕТСЯ СЕРЕДИНА ФИГУРЫ
-	virtual void setPosition(const glm::fvec2& newPos);
+	virtual void setPosition(const glm::vec2& newPos);
 	virtual glm::fvec2 getPosition();
 
 	// масштаб, увеличение фигуры В n раз
-	virtual void setScale(const glm::fvec2& newScale);
+	virtual void setScale(const glm::vec2& newScale);
 	virtual glm::fvec2 getScale();
 
 	// установка и получения размера, под капотом находит масштаб по формуле ( newSize / Size )
 	// установка размера на n значение
-	virtual void setSize(const glm::fvec2& newSize);
+	virtual void setSize(const glm::vec2& newSize);
 	virtual glm::fvec2 getSize();
 
 	// установка и получение цвета
-	virtual void setColor(const glm::fvec3& newColor);
-	virtual glm::fvec3 getColor();
+	virtual void setColor(const glm::vec4& newColor);
+	virtual glm::vec4 getColor();
 
 	// установка и получение цвета
 	virtual void setRotate(float angle);
@@ -89,7 +89,8 @@ private:
 
 protected:
 	Transform transform;                  		// общая информация о фигуре
-  	glm::vec3 color;                      		// цвет
+  	glm::vec4 color;                      		// цвет
+	
 };
 
 

@@ -28,14 +28,15 @@ void BufferManager::updateData(GLuint* VBO, std::size_t size, const void* data){
 
 
 
-void BufferManager::del(GLuint* VBO){
-	if( std::count(buffer.begin(), buffer.end(), VBO) != 0 ){
+void BufferManager::del(GLuint*& VBO){
+	if( std::count(buffer.begin(), buffer.end(), VBO) != 0 and VBO != nullptr ){
 		// сначало удалим из Буффера памяти видеокарты
 		glDeleteBuffers(1, VBO);
 		// потом удалим данных из массива
 		buffer.erase( std::remove(buffer.begin(), buffer.end(), VBO), buffer.end() );
 
 		delete VBO;
+		VBO = nullptr;
 	}
 }
 
@@ -43,5 +44,6 @@ void BufferManager::del(GLuint* VBO){
 
 void BufferManager::finallization(){
 	for( GLuint* _iterItem : buffer )
-		del(_iterItem);
+		glDeleteBuffers(1, _iterItem);
+	buffer.clear();
 }

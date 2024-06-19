@@ -4,3 +4,6 @@
 [submodule "ConstructorEngine/lib/glfw"]
 	path = ConstructorEngine/lib/glfw
 	url = https://github.com/glfw/glfw.git
+[submodule "ConstructorEngine/lib/soil"]
+	path = ConstructorEngine/lib/soil
+	url = https://github.com/paralin/soil.git

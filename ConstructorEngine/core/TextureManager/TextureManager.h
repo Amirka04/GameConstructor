@@ -12,28 +12,39 @@ const int BIT_TEXTURE = GL_TEXTURE_2D;
 using Texture2D = GLuint;
 
 
-class TextureItem{
+class Texture{
     public:
-        std::vector<glm::vec2> uv;
+        Texture();
+        void bind();
+        void unbind();
+        void setUV(std::vector<glm::vec2> newUV);
+    
         Texture2D id;
         int width, height;
         std::string TextureName;
-        
-        TextureItem();
+    
+    protected:
+        std::vector<glm::vec2> uv;
+        std::vector<glm::vec2> defaultUV;
 };
 
 
 
 class TextureManager{
     public:
-        static TextureItem* load(const char* path);
-        static void remove(TextureItem* _texItem);
-        static void reloadTexture(TextureItem* _texItem, const char* path);
+        static void load(Texture& texture, const std::string& path);
+        static void remove(Texture& texture);
+        static void reloadTexture(Texture& texture_texItem, const std::string& path);
         static void finalization();
     private:
-        // будет хранить в себе адреса всех текстур
-        static std::vector<TextureItem*> buffer;
+        // первая хеш-таблица содержит в себе:
+        // ключ - строка, у нас это будет путь до текстуры или его имя
+        // значение кол-во
+        static std::map<std::string, int64_t> TextureCount;
+        // во второй хеш-таблице тоже самое, но в качестве значения будет использоваться id текстуры для OpenGL
+        static std::map<std::string, Texture2D> TextureID;
 };
+
 
 
 #endif
